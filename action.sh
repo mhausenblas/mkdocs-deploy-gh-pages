@@ -11,4 +11,4 @@ if ! git config --get user.email; then
     git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 fi
 
-mkdocs gh-deploy --config-file "${GITHUB_WORKSPACE}/mkdocs.yml"
+mkdocs gh-deploy --config-file "${GITHUB_WORKSPACE}/mkdocs.yml" --github-token "${GITHUB_TOKEN}"
