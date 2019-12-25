@@ -5,11 +5,6 @@ author: 'Michael Hausenblas, hausenb@amazon.com'
 branding:
   icon: 'arrow-up-circle'  
   color: 'orange'
-inputs:
-  site-dir:
-    description: 'Location of the site directory'
-    required: false
-    default: 'docs'
 runs:
   using: 'docker'
   image: 'Dockerfile'
