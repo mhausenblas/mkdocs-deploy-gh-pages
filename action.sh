@@ -12,6 +12,6 @@ if ! git config --get user.email; then
 fi
 
 git remote rm origin
-git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+git remote add origin "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 mkdocs gh-deploy --config-file "${GITHUB_WORKSPACE}/mkdocs.yml"
