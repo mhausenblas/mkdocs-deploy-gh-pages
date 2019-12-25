@@ -24,6 +24,6 @@ jobs:
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
-          SITE_DIR: docs/
+          DOCS_DIR: docs/
 ```
 
