@@ -2,4 +2,8 @@
 
 set -e
 
-mkdocs gh-deploy --config-file "${GITHUB_WORKSPACE}/${INPUT_SITE_DIR}/mkdocs.yml"
+if [[ -z "${SITE_DIR}" ]]; then
+	SITE_DIR=docs/
+fi
+
+mkdocs gh-deploy --config-file "${GITHUB_WORKSPACE}/${SITE_DIR}mkdocs.yml"
