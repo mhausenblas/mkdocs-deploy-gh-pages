@@ -3,13 +3,8 @@
 set -e
 set -o pipefail
 
-if [[ -z "$SITE_DIR" ]]; then
-	SITE_DIR=docs
-fi
-
 echo 'Installing MkDocs'
 pip install mkdocs
 
 echo 'Building the MkDocs site'
-cd $SITE_DIR
-./mkdocs gh-deploy
+./mkdocs gh-deploy --config-file $GITHUB_WORKSPACE/$INPUT_SITE_DIR/mkdocs.yml
