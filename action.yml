@@ -1,0 +1,13 @@
+# action.yml
+name: 'Deploy MkDocs'
+description: 'Deploys MkDocs site'
+inputs:
+  site-dir:
+    description: 'Location of the site directory'
+    required: false
+    default: 'docs'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.site-dir }}
