@@ -2,6 +2,7 @@
 
 set -e
 
+pip install -r "${GITHUB_WORKSPACE}/requirements.txt"
 
 if ! git config --get user.name; then
     git config --global user.name "${GITHUB_ACTOR}"
