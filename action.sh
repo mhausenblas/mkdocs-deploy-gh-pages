@@ -8,11 +8,11 @@ function print_info() {
 
 if [ -n "${GITHUB_TOKEN}" ]; then
     print_info "setup with GITHUB_TOKEN"
-    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${PUBLISH_REPOSITORY}.git"
+    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 elif [ -n "${PERSONAL_TOKEN}" ]; then
     print_info "setup with PERSONAL_TOKEN"
-    remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${PUBLISH_REPOSITORY}.git"
+    remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 fi
 
 if ! git config --get user.name; then
