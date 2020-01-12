@@ -9,6 +9,7 @@ if [ -n "${GITHUB_TOKEN}" ]; then
 elif [ -n "${PERSONAL_TOKEN}" ]; then
     print_info "setup with PERSONAL_TOKEN"
     remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${PUBLISH_REPOSITORY}.git"
+fi
 
 if ! git config --get user.name; then
     git config --global user.name "${GITHUB_ACTOR}"
