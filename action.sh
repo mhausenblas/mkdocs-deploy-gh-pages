@@ -2,6 +2,13 @@
 
 set -e
 
+if [ -n "${GITHUB_TOKEN}" ]; then
+    print_info "setup with GITHUB_TOKEN"
+    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${PUBLISH_REPOSITORY}.git"
+
+elif [ -n "${PERSONAL_TOKEN}" ]; then
+    print_info "setup with PERSONAL_TOKEN"
+    remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${PUBLISH_REPOSITORY}.git"
 
 if ! git config --get user.name; then
     git config --global user.name "${GITHUB_ACTOR}"
@@ -12,6 +19,6 @@ if ! git config --get user.email; then
 fi
 
 git remote rm origin
-git remote add origin "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+git remote add origin "${remote_repo}"
 
 mkdocs gh-deploy --config-file "${GITHUB_WORKSPACE}/mkdocs.yml" --force
