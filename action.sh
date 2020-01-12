@@ -2,6 +2,10 @@
 
 set -e
 
+function print_info() {
+    echo -e "\e[36mINFO: ${1}\e[m"
+}
+
 if [ -n "${GITHUB_TOKEN}" ]; then
     print_info "setup with GITHUB_TOKEN"
     remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${PUBLISH_REPOSITORY}.git"
