@@ -6,6 +6,8 @@ function print_info() {
     echo -e "\e[36mINFO: ${1}\e[m"
 }
 
+pip install -r "${GITHUB_WORKSPACE}/requirements.txt"
+
 if [ -n "${GITHUB_TOKEN}" ]; then
     print_info "setup with GITHUB_TOKEN"
     remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
