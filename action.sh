@@ -6,7 +6,11 @@ function print_info() {
     echo -e "\e[36mINFO: ${1}\e[m"
 }
 
-pip install -r "${GITHUB_WORKSPACE}/requirements.txt"
+REQUIREMENTS="${GITHUB_WORKSPACE}/requirements.txt"
+
+if [ -f "${REQUIREMENTS}" ]; then
+    pip install -r "${REQUIREMENTS}"
+fi
 
 if [ -n "${GITHUB_TOKEN}" ]; then
     print_info "setup with GITHUB_TOKEN"
