@@ -11,7 +11,7 @@ There are two methods for generating and building your gh-pages branch: use eith
 It is important to note that GITHUB_TOKEN works only for **private** repositories. The GitHub team is currently investigating solutions to resolve this, but in the meantime a personal access token must be used in order to trigger builds for public repositories.
   
 ### Building with `PERSONAL_TOKEN`  
-[Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`.
+[Generate a personal access token (scope `repo`)](https://github.com/settings/tokens) and [create a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) in your repository settings with the name `PERSONAL_TOKEN` and the value of the token generated.
 
 ### Building with `GITHUB_TOKEN`  
 This action supports building and deploying with a GITHUB_TOKEN but it has problems deploying to public repositories. In public repositories, your changes will be pushed to the gh-pages branch, but an automatic build will not be performed by GitHub Pages.
