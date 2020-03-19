@@ -16,6 +16,10 @@ It is important to note that GITHUB_TOKEN works only for **private** repositorie
 ### Building with `GITHUB_TOKEN`  
 This action supports building and deploying with a GITHUB_TOKEN but it has problems deploying to public repositories. In public repositories, your changes will be pushed to the gh-pages branch, but an automatic build will not be performed by GitHub Pages.
 
+### Custom domain for github pages
+MkDocs can be deployed to github pages using a custom domain, if you populate a `CUSTOM_DOMAIN` environment variable. This will generate a CNAME file, which will be placed inside the /docs folder.
+https://www.mkdocs.org/user-guide/deploying-your-docs/#custom-domains
+
 ## Example usage
 
 ```shell
@@ -37,5 +41,6 @@ jobs:
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CUSTOM_DOMAIN: optionaldomain.com
 ```
 

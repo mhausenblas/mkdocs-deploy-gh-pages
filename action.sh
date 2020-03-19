@@ -12,6 +12,11 @@ if [ -f "${REQUIREMENTS}" ]; then
     pip install -r "${REQUIREMENTS}"
 fi
 
+if [ -n "${CUSTOM_DOMAIN}" ]; then
+    print_info "Setting custom domain for github pages"
+    echo "${CUSTOM_DOMAIN}" > "${GITHUB_WORKSPACE}/docs/CNAME"
+fi
+
 if [ -n "${GITHUB_TOKEN}" ]; then
     print_info "setup with GITHUB_TOKEN"
     remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
