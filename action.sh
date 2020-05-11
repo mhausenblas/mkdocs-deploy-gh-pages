@@ -6,7 +6,7 @@ function print_info() {
     echo -e "\e[36mINFO: ${1}\e[m"
 }
 
-if [ -n "${REQUIREMENTS}" && -f "${GITHUB_WORKSPACE}/${REQUIREMENTS}" ]; then
+if [ -n "${REQUIREMENTS}" ] && [ -f "${GITHUB_WORKSPACE}/${REQUIREMENTS}" ]; then
     pip install -r "${GITHUB_WORKSPACE}/${REQUIREMENTS}"
 else
     REQUIREMENTS="${GITHUB_WORKSPACE}/requirements.txt"
