@@ -6,10 +6,13 @@ function print_info() {
     echo -e "\e[36mINFO: ${1}\e[m"
 }
 
-REQUIREMENTS="${GITHUB_WORKSPACE}/requirements.txt"
-
-if [ -f "${REQUIREMENTS}" ]; then
-    pip install -r "${REQUIREMENTS}"
+if [ -n "${REQUIREMENTS}" -a -f "${GITHUB_WORKSPACE}/${REQUIREMENTS}" ]; then
+    pip install -r "${GITHUB_WORKSPACE}/${REQUIREMENTS}"
+else
+    REQUIREMENTS="${GITHUB_WORKSPACE}/requirements.txt"
+    if [ -f "${REQUIREMENTS}" ]; then
+        pip install -r "${REQUIREMENTS}"
+    fi
 fi
 
 if [ -n "${CUSTOM_DOMAIN}" ]; then
