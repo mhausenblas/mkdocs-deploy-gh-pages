@@ -20,6 +20,8 @@ This action supports building and deploying with a `GITHUB_TOKEN`. This token is
 
 It is more **secure** than a personal token, since you never actually see the value of the `GITHUB_TOKEN` and also the `GITHUB_TOKEN` is scoped to only work for a **single** repo.
 
+Note that for this approach, Github Pages will be enabled in Settings but you will _not_ have a URL displayed or environment tab yet. So change the Github Pages settings to another target and then back again to `gh-pages` (if that is your branch to serve) - then you will see a URL. This step is only needed on the _first_ deploy and no action is needed later on.
+
 ### Custom domain for github pages
 
 MkDocs can be deployed to github pages using a custom domain, if you populate a `CUSTOM_DOMAIN` environment variable. This will generate a CNAME file, which will be placed inside the `/docs` folder.
