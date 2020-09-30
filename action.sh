@@ -20,10 +20,16 @@ if [ -n "${CUSTOM_DOMAIN}" ]; then
     echo "${CUSTOM_DOMAIN}" > "${GITHUB_WORKSPACE}/docs/CNAME"
 fi
 
+if [ -n "${CONFIG_FILE}" ]; then
+    print_info "Setting custom path for mkdocs config yml"
+    export CONFIG_FILE="${GITHUB_WORKSPACE}/${CONFIG_FILE}"
+else
+    export CONFIG_FILE="${GITHUB_WORKSPACE}/mkdocs.yml"
+fi
+
 if [ -n "${GITHUB_TOKEN}" ]; then
     print_info "setup with GITHUB_TOKEN"
     remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-
 elif [ -n "${PERSONAL_TOKEN}" ]; then
     print_info "setup with PERSONAL_TOKEN"
     remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
@@ -40,4 +46,4 @@ fi
 git remote rm origin
 git remote add origin "${remote_repo}"
 
-mkdocs gh-deploy --config-file "${GITHUB_WORKSPACE}/mkdocs.yml" --force
+mkdocs gh-deploy --config-file "${CONFIG_FILE}" --force
