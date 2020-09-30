@@ -22,6 +22,7 @@ fi
 
 if [ -n "${CONFIG_FILE}" ]; then
     print_info "Setting custom path for mkdocs config yml"
+    export CONFIG_FILE="${GITHUB_WORKSPACE}/${CONFIG_FILE}"
 else
     export CONFIG_FILE="${GITHUB_WORKSPACE}/mkdocs.yml"
 fi
