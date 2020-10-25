@@ -1,5 +1,8 @@
-FROM squidfunk/mkdocs-material:6.1.0
+FROM python:3.8.1-alpine3.11
 LABEL maintainer="Michael Hausenblas, hausenbl@amazon.com"
+
+RUN apk add --no-cache git git-fast-import openssh
+WORKDIR /docs
 
 COPY action.sh /action.sh
 
