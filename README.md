@@ -28,6 +28,10 @@ MkDocs can be deployed to github pages using a custom domain, if you populate a 
 
 https://www.mkdocs.org/user-guide/deploying-your-docs/#custom-domains
 
+### Custom File Pathing of Mkdocs file
+
+This action supports deployment of mkdocs with different file path , if you populate a `CONFIG_FILE` environment variable. This is important if you have mkdocs file in another folder such as if you have `mkdocs.yml` in a path `docs/mkdocs.yml`. Without populating this, the deployment assumes that `mkdocs.yml` is on the root folder.
+
 ## Example usage
 
 ```shell
@@ -50,4 +54,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: optionaldomain.com
+          CONFIG_FILE: folder/mkdocs.yml
 ```
