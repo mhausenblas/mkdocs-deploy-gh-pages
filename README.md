@@ -32,6 +32,10 @@ https://www.mkdocs.org/user-guide/deploying-your-docs/#custom-domains
 
 This action supports deployment of mkdocs with different file path , if you populate a `CONFIG_FILE` environment variable. This is important if you have mkdocs file in another folder such as if you have `mkdocs.yml` in a path `docs/mkdocs.yml`. Without populating this, the deployment assumes that `mkdocs.yml` is on the root folder.
 
+### Requirements.txt
+
+This action supports installation of `requirements.txt` for custom installations on the mkdocs package such as installation of mermaid markdown which is not present as part of the mkdocs base extensions. If you populate a `REQUIREMENTS` environment variable with a path, the action will install the file being pointed by the environment variable.
+
 ## Example usage
 
 ```shell
@@ -56,4 +60,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: optionaldomain.com
           CONFIG_FILE: folder/mkdocs.yml
+          REQUIREMENTS: folder/requirements.txt
 ```
