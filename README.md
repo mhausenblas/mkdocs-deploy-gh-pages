@@ -32,6 +32,10 @@ https://www.mkdocs.org/user-guide/deploying-your-docs/#custom-domains
 
 This action supports deployment of mkdocs with different file path , if you populate a `CONFIG_FILE` environment variable. This is important if you have mkdocs file in another folder such as if you have `mkdocs.yml` in a path `docs/mkdocs.yml`. Without populating this, the deployment assumes that `mkdocs.yml` is on the root folder.
 
+## Installing extra packages
+
+Some Python packages require C bindings. These packages can be installed using the `EXTRA_PACKAGES` variable. The `EXTRA_PACKAGES` variable will be passed to the `apk add` command of Alpine Linux before running `pip install` to install the Python packages.
+
 ## Example usage
 
 ```shell
@@ -56,4 +60,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: optionaldomain.com
           CONFIG_FILE: folder/mkdocs.yml
+          EXTRA_PACKAGES: build-base
 ```
