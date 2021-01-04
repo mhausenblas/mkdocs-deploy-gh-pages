@@ -28,6 +28,14 @@ MkDocs can be deployed to github pages using a custom domain, if you populate a 
 
 https://www.mkdocs.org/user-guide/deploying-your-docs/#custom-domains
 
+### Custom File Pathing of Mkdocs file
+
+This action supports deployment of mkdocs with different file path , if you populate a `CONFIG_FILE` environment variable. This is important if you have mkdocs file in another folder such as if you have `mkdocs.yml` in a path `docs/mkdocs.yml`. Without populating this, the deployment assumes that `mkdocs.yml` is on the root folder.
+
+## Installing extra packages
+
+Some Python packages require C bindings. These packages can be installed using the `EXTRA_PACKAGES` variable. The `EXTRA_PACKAGES` variable will be passed to the `apk add` command of Alpine Linux before running `pip install` to install the Python packages.
+
 ## Example usage
 
 ```shell
@@ -35,14 +43,14 @@ name: Publish docs via GitHub Pages
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
     name: Deploy docs
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v1
 
       - name: Deploy docs
@@ -50,4 +58,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: optionaldomain.com
+          CONFIG_FILE: folder/mkdocs.yml
+          EXTRA_PACKAGES: build-base
 ```
