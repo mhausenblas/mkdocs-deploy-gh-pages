@@ -2,6 +2,11 @@
 name: 'Deploy MkDocs'
 description: 'Deploys MkDocs site'
 author: 'Michael Hausenblas, hausenb@amazon.com'
+inputs:
+  auth_token:
+    description: 'Auth token used to API'
+    required: false
+    default: "${{ github.token }}
 branding:
   icon: 'arrow-up-circle'  
   color: 'orange'
