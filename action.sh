@@ -7,7 +7,7 @@ function print_info() {
 }
 
 if [ -n "${EXTRA_PACKAGES}" ]; then
-    apk add --no-cache ${EXTRA_PACKAGES}
+    apk add --no-cache "${EXTRA_PACKAGES}"
 fi
 
 if [ -n "${REQUIREMENTS}" ] && [ -f "${GITHUB_WORKSPACE}/${REQUIREMENTS}" ]; then
