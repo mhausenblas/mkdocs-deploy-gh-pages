@@ -33,10 +33,10 @@ fi
 
 if [ -n "${GITHUB_TOKEN}" ]; then
     print_info "setup with GITHUB_TOKEN"
-    remote_repo="https://x-access-token:${GITHUB_TOKEN}@${GITHUB_DOMAIN:-github.com}/${GITHUB_REPOSITORY}.git"
+    remote_repo="https://x-access-token:${GITHUB_TOKEN}@${GITHUB_DOMAIN:-'github.com'}/${GITHUB_REPOSITORY}.git"
 elif [ -n "${PERSONAL_TOKEN}" ]; then
     print_info "setup with PERSONAL_TOKEN"
-    remote_repo="https://x-access-token:${PERSONAL_TOKEN}@${GITHUB_DOMAIN:-github.com}/${GITHUB_REPOSITORY}.git"
+    remote_repo="https://x-access-token:${PERSONAL_TOKEN}@${GITHUB_DOMAIN:-'github.com'}/${GITHUB_REPOSITORY}.git"
 fi
 
 if ! git config --get user.name; then
@@ -44,7 +44,7 @@ if ! git config --get user.name; then
 fi
 
 if ! git config --get user.email; then
-    git config --global user.email "${GITHUB_ACTOR}@users.noreply.${GITHUB_DOMAIN:-github.com}"
+    git config --global user.email "${GITHUB_ACTOR}@users.noreply.${GITHUB_DOMAIN:-'github.com'}"
 fi
 
 git remote rm origin
