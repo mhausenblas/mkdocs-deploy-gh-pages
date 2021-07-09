@@ -6,9 +6,10 @@ function print_info() {
     echo -e "\e[36mINFO: ${1}\e[m"
 }
 
-if [ -n "${EXTRA_PACKAGES}" ]; then
-    apk add --no-cache "${EXTRA_PACKAGES}"
-fi
+for package in ${EXTRA_PACKAGES}
+do
+    apk add --no-cache "${package}"
+done
 
 if [ -n "${REQUIREMENTS}" ] && [ -f "${GITHUB_WORKSPACE}/${REQUIREMENTS}" ]; then
     pip install -r "${GITHUB_WORKSPACE}/${REQUIREMENTS}"
