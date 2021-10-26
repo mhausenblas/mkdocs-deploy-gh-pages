@@ -40,6 +40,10 @@ This action supports deployment of mkdocs with different file path , if you popu
 
 Some Python packages require C bindings. These packages can be installed using the `EXTRA_PACKAGES` variable. The `EXTRA_PACKAGES` variable will be passed to the `apk add` command of Alpine Linux before running `pip install` to install the Python packages.
 
+## Installing mkdocs plugins
+
+If you use some mkdocs plugins like [`codeinclude`](https://github.com/rnorth/mkdocs-codeinclude-plugin) then you need to define it as dependency in the typical python way with a `requirements.txt` file. In the sample above you need to add the line `mkdocs-codeinclude-plugin`. Then you need to link the file using the `REQUIREMENTS` variable.
+
 ## Example usage
 
 ```shell
@@ -66,4 +70,5 @@ jobs:
           CONFIG_FILE: folder/mkdocs.yml
           EXTRA_PACKAGES: build-base
           # GITHUB_DOMAIN: github.myenterprise.com
+          REQUIREMENTS: folder/requirements.txt
 ```
