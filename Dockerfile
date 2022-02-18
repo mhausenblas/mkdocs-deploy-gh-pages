@@ -1,5 +1,5 @@
-FROM squidfunk/mkdocs-material:8.2.1
-LABEL maintainer="Michael Hausenblas, hausenbl@amazon.com"
+FROM public.ecr.aws/b7r0k8v0/mkdocs-material:latest
+LABEL maintainer="Steve Zuar, dev@zuar.com"
 
 COPY action.sh /action.sh
 
