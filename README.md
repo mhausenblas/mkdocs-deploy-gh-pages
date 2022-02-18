@@ -1,3 +1,10 @@
+# Zuar Fork of mkdocs-deploy-gh-pages
+
+Forked from https://github.com/zuarbase/mkdocs-deploy-gh-pages to
+allow use of Zuar's fork of mkdocs-material.
+
+--------------------------------------------------------------------
+
 # GitHub Action to deploy an MkDocs site to GitHub Pages
 
 ![GitHub Badge](https://github.com/mhausenblas/mkdocs-deploy-gh-pages/workflows/Build/badge.svg)
