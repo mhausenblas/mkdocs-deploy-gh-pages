@@ -43,6 +43,9 @@ else
     exec -- mkdocs build --strict
 fi
 
+# workaround, see https://github.com/actions/checkout/issues/766
+git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
 if ! git config --get user.name; then
     git config --global user.name "${GITHUB_ACTOR}"
 fi
