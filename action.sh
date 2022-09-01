@@ -6,6 +6,10 @@ function print_info() {
     echo -e "\e[36mINFO: ${1}\e[m"
 }
 
+# Workaround for github runner bug
+# https://github.com/actions/runner/issues/2033
+git config --global --add safe.directory /github/workspace
+
 for package in ${EXTRA_PACKAGES}
 do
     apk add --no-cache "${package}"
@@ -53,9 +57,5 @@ fi
 
 git remote rm origin
 git remote add origin "${remote_repo}"
-
-# Workaround for github runner bug
-# https://github.com/actions/runner/issues/2033
-git config --global --add safe.directory /github/workspace
 
 mkdocs gh-deploy --config-file "${CONFIG_FILE}" --force
