@@ -54,4 +54,8 @@ fi
 git remote rm origin
 git remote add origin "${remote_repo}"
 
+# Workaround for github runner bug
+# https://github.com/actions/runner/issues/2033
+git config --global --add safe.directory /github/workspace
+
 mkdocs gh-deploy --config-file "${CONFIG_FILE}" --force
