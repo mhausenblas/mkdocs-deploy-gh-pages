@@ -44,8 +44,11 @@ elif [ -n "${PERSONAL_TOKEN}" ]; then
     remote_repo="https://x-access-token:${PERSONAL_TOKEN}@${GITHUB_DOMAIN:-"github.com"}/${GITHUB_REPOSITORY}.git"
 else
     print_info "no token found; linting"
-    exec -- mkdocs build --strict
+    exec -- mkdocs build --config-file "${CONFIG_FILE}" --strict
 fi
+
+# workaround, see https://github.com/actions/checkout/issues/766
+git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
 if ! git config --get user.name; then
     git config --global user.name "${GITHUB_ACTOR}"
