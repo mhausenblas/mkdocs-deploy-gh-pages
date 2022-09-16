@@ -40,7 +40,7 @@ elif [ -n "${PERSONAL_TOKEN}" ]; then
     remote_repo="https://x-access-token:${PERSONAL_TOKEN}@${GITHUB_DOMAIN:-"github.com"}/${GITHUB_REPOSITORY}.git"
 else
     print_info "no token found; linting"
-    exec -- mkdocs build --config-file "${CONFIG_FILE}" --strict
+    exec -- mkdocs build --config-file "${CONFIG_FILE}"
 fi
 
 # workaround, see https://github.com/actions/checkout/issues/766
