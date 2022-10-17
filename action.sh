@@ -63,6 +63,8 @@ git remote add origin "${remote_repo}"
 
 print_info "pwd: $(pwd)"
 print_info "ls -ltr /github: $(ls -ltr /github)"
-print_info "ls -ltr: $(ls -ltr)"
+print_info "ls -ltr /github/workspace: $(ls -ltr /github/workspace)"
+print_info "ls -ltr /github/workspace/docs: $(ls -ltr /github/workspace/docs)"
+print_info "ls -ltr .: $(ls -ltr .)"
 
 mkdocs gh-deploy --config-file "${CONFIG_FILE}" --force
