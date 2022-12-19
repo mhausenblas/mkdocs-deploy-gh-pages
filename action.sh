@@ -71,7 +71,7 @@ if [ -n "${CONFIG_FILES}" ]; then
         CONFIG_FILE="${GITHUB_WORKSPACE}/${FILES[$i-1]}"
 
         # First one is clean (not --dirty)
-        if [ "$i" -eq "0" ]; then
+        if [ "$i" -eq "1" ]; then
             echo "BUILDING FIRST CONFIG: ${CONFIG_FILE}"
             mkdocs build --config-file "${CONFIG_FILE}"
         elif [ "$i" -eq "$TOTAL" ]; then
