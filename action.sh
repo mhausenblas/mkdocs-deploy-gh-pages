@@ -23,7 +23,7 @@ fi
 if [ -n "${CONFIG_FILE}" ]; then
 	if [ -n "${CUSTOM_DOMAIN}" ]; then
 	    print_info "Setting custom domain for github pages"
-	    echo "${CUSTOM_DOMAIN}" > "${GITHUB_WORKSPACE}/${CONFIG_FILE%\/*}/CNAME"
+	    echo "${CUSTOM_DOMAIN}" > "${GITHUB_WORKSPACE}/CNAME"
 	fi
     print_info "Setting custom path for mkdocs config yml"
     export CONFIG_FILE="${GITHUB_WORKSPACE}/${CONFIG_FILE}"
