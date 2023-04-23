@@ -25,7 +25,7 @@ if [ -n "${CONFIG_FILE}" ]; then
     export CONFIG_FILE="${GITHUB_WORKSPACE}/${CONFIG_FILE}"
 	if [ -n "${CUSTOM_DOMAIN}" ]; then
 	    print_info "Setting custom domain for github pages"
-	    echo "${CUSTOM_DOMAIN}" > "${CONFIG_FILE%\/*}/CNAME"
+	    echo "${CUSTOM_DOMAIN}" > "${CONFIG_FILE%\/*}/site/CNAME"
 	fi
 else
 	if [ -n "${CUSTOM_DOMAIN}" ]; then
