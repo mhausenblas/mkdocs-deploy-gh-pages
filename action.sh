@@ -28,7 +28,7 @@ if [ -n "${CONFIG_FILE}" ]; then
 	    echo "${CUSTOM_DOMAIN}" > "${CONFIG_FILE%\/*}/CNAME"
 	    echo "${CONFIG_FILE%\/*}"
 	    ls "${CONFIG_FILE%\/*}"
-	    ls "${GITHUB_WORKSPACE}/*"
+	    ls "${GITHUB_WORKSPACE}"
 	fi
 else
 	if [ -n "${CUSTOM_DOMAIN}" ]; then
