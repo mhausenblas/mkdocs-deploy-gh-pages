@@ -1,4 +1,4 @@
-FROM squidfunk/mkdocs-material:9.0.6
+FROM squidfunk/mkdocs-material:9.1.8
 LABEL maintainer="Michael Hausenblas, hausenbl@amazon.com"
 
 COPY action.sh /action.sh
