@@ -50,7 +50,7 @@ https://www.mkdocs.org/user-guide/deploying-your-docs/#custom-domains
 ## Example usage
 
 ```yml
-name: Publish Docs via GitHub Pages
+name: Publish MkDocs Site via GitHub Pages
 on:
   push:
     branches:
@@ -73,6 +73,6 @@ jobs:
           CUSTOM_DOCS: coolfolder # Only used if CUSTOM_DOMAIN and a custom 'docs_dir' are set 
           CONFIG_FILE: folder/mkdocs.yml
           EXTRA_PACKAGES: build-base
-          # GITHUB_DOMAIN: github.myenterprise.com
           REQUIREMENTS: folder/requirements.txt
+          # GITHUB_DOMAIN: github.myenterprise.com
 ```
