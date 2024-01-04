@@ -1,7 +1,7 @@
 # action.yml
 name: 'Deploy MkDocs'
 description: 'Deploys MkDocs site'
-author: 'Michael Hausenblas, hausenb@amazon.com'
+author: 'Aaron Turner'
 branding:
   icon: 'arrow-up-circle'  
   color: 'orange'
