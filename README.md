@@ -64,8 +64,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
+        uses: mhausenblas/mkdocs-deploy-gh-pages@nomaterial
+        # Or use mhausenblas/mkdocs-deploy-gh-pages@master to build with the mkdocs-material theme
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: optionaldomain.com
