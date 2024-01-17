@@ -1,4 +1,4 @@
-FROM python:3.8.1-alpine3.11
+FROM python:3.11-alpine3.18
 LABEL maintainer="Michael Hausenblas, hausenbl@amazon.com"
 
 RUN apk add --no-cache git git-fast-import openssh build-base
