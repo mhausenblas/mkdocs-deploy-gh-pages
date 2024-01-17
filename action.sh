@@ -11,6 +11,9 @@ do
     apk add --no-cache "${package}"
 done
 
+# mkdocs is required
+pip install mkdocs
+
 if [ -n "${REQUIREMENTS}" ] && [ -f "${GITHUB_WORKSPACE}/${REQUIREMENTS}" ]; then
     pip install -r "${GITHUB_WORKSPACE}/${REQUIREMENTS}"
 else
