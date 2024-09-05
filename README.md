@@ -1,6 +1,6 @@
 # GitHub Action to deploy an MkDocs site to GitHub Pages
 
-![GitHub Badge](https://github.com/mhausenblas/mkdocs-deploy-gh-pages/workflows/Build/badge.svg)
+![GitHub Badge](https://github.com/andi34/mkdocs-deploy-gh-pages/workflows/Build/badge.svg)
 
 This GitHub action will deploy your [MkDocs site](https://www.mkdocs.org/) as [GitHub Pages](https://pages.github.com/), using the [Material](https://github.com/squidfunk/mkdocs-material) theme. It assumes that an `mkdocs.yml` file is present in the top-level directory and the source files (Markdown, etc.) are in the `docs/` folder. You can use [mhausenblas/mkdocs-template](https://github.com/mhausenblas/mkdocs-template) as a template.
 
@@ -20,7 +20,17 @@ This action supports building and deploying with a `GITHUB_TOKEN`. This token is
 
 It is more **secure** than a personal token, since you never actually see the value of the `GITHUB_TOKEN` and also the `GITHUB_TOKEN` is scoped to only work for a **single** repo.
 
+You may need to give the `GITHUB_TOKEN` write permission. Go to your repository's **Settings > Actions > General > Workflow Permissions** and select **Read and write permissions**.
+
 Note that for this approach, Github Pages will be enabled in Settings but you will _not_ have a URL displayed or environment tab yet. So change the Github Pages settings to another target and then back again to `gh-pages` (if that is your branch to serve) - then you will see a URL. This step is only needed on the _first_ deploy and no action is needed later on.
+
+### Alternative `GITHUB_DOMAIN`
+
+In case this action should be used in a Github Enterprise environment you can overwrite the `github.com` domain with your corresponding Github Enterprise domain name by specifying the `GITHUB_DOMAIN` environment variable.
+
+### Custom repository
+
+In case you want to push to another repository than origin define `GITHUB_ORIGIN`. Needs building with `PERSONAL_TOKEN`.
 
 ### Custom domain for github pages
 
@@ -35,6 +45,10 @@ This action supports deployment of mkdocs with different file path , if you popu
 ## Installing extra packages
 
 Some Python packages require C bindings. These packages can be installed using the `EXTRA_PACKAGES` variable. The `EXTRA_PACKAGES` variable will be passed to the `apk add` command of Alpine Linux before running `pip install` to install the Python packages.
+
+## Installing mkdocs plugins
+
+If you use some mkdocs plugins like [`codeinclude`](https://github.com/rnorth/mkdocs-codeinclude-plugin) then you need to define it as dependency in the typical python way with a `requirements.txt` file. In the sample above you need to add the line `mkdocs-codeinclude-plugin`. Then you need to link the file using the `REQUIREMENTS` variable.
 
 ## Example usage
 
@@ -51,13 +65,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }} # Uses Personal Access Token (PAT) for checkout, needed to push to another repository
 
       - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        uses: andi34/mkdocs-deploy-gh-pages@nomaterial
+        # Or use andi34/mkdocs-deploy-gh-pages@master to build with the mkdocs-material theme
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PERSONAL_TOKEN: ${{ secrets.PAT_TOKEN }}
           CUSTOM_DOMAIN: optionaldomain.com
           CONFIG_FILE: folder/mkdocs.yml
           EXTRA_PACKAGES: build-base
+          # GITHUB_DOMAIN: github.myenterprise.com
+          # GITHUB_ORIGIN: destination-repository-username/destination-repository-name
+          REQUIREMENTS: folder/requirements.txt
 ```
