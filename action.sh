@@ -57,4 +57,34 @@ fi
 git remote rm origin
 git remote add origin "${remote_repo}"
 
-mkdocs gh-deploy --config-file "${CONFIG_FILE}" --force
+# Allow multiple config files (multi language)
+# shellcheck disable=SC2153
+if [ -n "${CONFIG_FILES}" ]; then
+
+    TOTAL=$(echo "$CONFIG_FILES" | wc -w)
+    # shellcheck disable=SC2206
+    FILES=($CONFIG_FILES)
+
+    for ((i = 1; i <= TOTAL; i++))
+    do
+        
+        CONFIG_FILE="${GITHUB_WORKSPACE}/${FILES[$i-1]}"
+
+        # First one is clean (not --dirty)
+        if [ "$i" -eq "1" ]; then
+            echo "BUILDING FIRST CONFIG: ${CONFIG_FILE}"
+            mkdocs build --config-file "${CONFIG_FILE}"
+        elif [ "$i" -eq "$TOTAL" ]; then
+            # last one includes a deploy
+            echo "BUILDING AND DEPLOY LAST CONFIG: ${CONFIG_FILE}"
+            mkdocs gh-deploy --config-file "${CONFIG_FILE}" --force --dirty
+        else
+            # intermediate single builds and are dirty
+            echo "BUILDING $i config file: ${CONFIG_FILE}"
+            mkdocs build --config-file "${CONFIG_FILE}" --dirty
+        fi
+
+    done
+else
+    mkdocs gh-deploy --config-file "${CONFIG_FILE}"
+fi
